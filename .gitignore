@@ -33,4 +33,4 @@
 run
 
 # Personal stuff
-*.vimcludes
+*.vimrc
