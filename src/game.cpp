@@ -116,8 +116,8 @@ void reshape(int width, int height);
 void keyboard(const Uint8* state);
 
 // Connect and put score in database
-void dbInsert(string name);
-std::stringstream dbGetScores();
+//void dbInsert(string name);
+//std::stringstream dbGetScores();
 //////// SDL Init Function ////////
 
 bool init()
@@ -165,12 +165,12 @@ bool init()
 
 void GameOver()
 {
-    string name;
-    cout << "Enter your name\n";
-    cin >> name;
+    //string name;
+    //cout << "Enter your name\n";
+    //cin >> name;
 
     gameOver = true;
-    dbInsert(name);
+    //dbInsert(name);
 
     for (int i=0; i < nEnemies; ++i)
     {
@@ -356,6 +356,7 @@ void display()
 
     glEnable(GL_BLEND);
     glBlendFunc(GL_SRC_ALPHA, GL_ONE);//_MINUS_SRC_ALPHA);
+    //glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 
     glBegin(GL_QUADS);
     glTexCoord2f(0,0);
@@ -397,18 +398,18 @@ void display()
     RenderText(money, (SDL_Color){255,255,255}, w/2-60, h-h/20, h/20, window);
 
     //Show highscores on screen if game over
-    if (gameOver) {
-        stringstream ss = dbGetScores();
-        double height = 3*h/4;
-        double heightstep = h/20;
-        string temp;
-        while (getline(ss, temp)) {
-                RenderText(temp, (SDL_Color){0,0,0}, w/2.85 - 1, height + 1, h/15, window);
-                RenderText(temp, (SDL_Color){0,0,0}, w/2.85 + 1, height - 1, h/15, window);
-                RenderText(temp, (SDL_Color){255,255,255}, w/2.85, height, h/15, window);
-                height -= heightstep;
-        }
-    }
+    //if (gameOver) {
+    //    stringstream ss = dbGetScores();
+    //    double height = 3*h/4;
+    //    double heightstep = h/20;
+    //    string temp;
+    //    while (getline(ss, temp)) {
+    //            RenderText(temp, (SDL_Color){0,0,0}, w/2.85 - 1, height + 1, h/15, window);
+    //            RenderText(temp, (SDL_Color){0,0,0}, w/2.85 + 1, height - 1, h/15, window);
+    //            RenderText(temp, (SDL_Color){255,255,255}, w/2.85, height, h/15, window);
+    //            height -= heightstep;
+    //    }
+    //}
     //swap the buffers
     glFlush();
     SDL_GL_SwapWindow(window);
@@ -503,9 +504,9 @@ void physics()
     keyboard(state);
 
     //adjust the eye position
-    //th += dth;
-    //ph += dph;
-    //zoom = zoom<2.0?2.0:zoom+dzoom;
+    th += dth;
+    ph += dph;
+    zoom = zoom<2.0?2.0:zoom+dzoom;
 
     if (!Pause)
     {
@@ -823,11 +824,11 @@ void handleEvents()
                     th = 0;
                     ph = 40;
                 }
-                //else
-                //{
-                //    const Uint8* state = SDL_GetKeyboardState(NULL);
-                //    keyboard(state);
-                //}
+                else
+                {
+                    const Uint8* state = SDL_GetKeyboardState(NULL);
+                    keyboard(state);
+                }
                 break;
 
             case SDL_WINDOWEVENT:
