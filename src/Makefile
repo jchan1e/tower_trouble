@@ -41,15 +41,13 @@ tower.o:tower.cpp tower.h enemy.h
 
 objects.o: objects.cpp objects.h
 	g++ -c $(CFLG) $<
-#	gcc -std=c99 -c $(CFLG) $<
 
 text.o: text.cpp text.h
 	g++ -c $(CFLG) $<
 
 #  link
 run:game.o map.o enemy.o tower.o objects.o text.o
-	g++ -g -o run $^ $(LIBS) -lSDL2_ttf -I/usr/local/include -I/usr/local/include/cppconn -lmysqlcppconn
-	#g++ -g -o run $^ $(LIBS) -lSDL2_ttf -I/usr/local/include -I/usr/local/include/cppconn -lmysqlcppconn
+	g++ -g -O3 -o run $^ $(LIBS) -lSDL2_ttf
 
 #  Clean
 clean:
