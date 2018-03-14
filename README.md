@@ -6,7 +6,7 @@
 - Language: c++
 - Graphics Library: SDL2, OpenGL, SDL2-ttf
 - Platform: Computer (Windows, Mac, Linux)
-- Additional Dependencies: MySQL, MySQL C++ connector
+[comment]:- Additional Dependencies: MySQL, MySQL C++ connector
 
 (to play game compile with makefile)
 
@@ -27,7 +27,7 @@ Click link to see demo of game:
 
 ## Requirements
 
-start up local server with SQL and then do ``source .../path-to/tower-trouble/db/init.sql``
+[comment]:start up local server with SQL and then do ``source .../path-to/tower-trouble/db/init.sql``
 
 Mac:
 
